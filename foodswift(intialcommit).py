@@ -6,9 +6,9 @@ import random
 
 conn = connect(
     host = 'localhost',
-    user = 'root', 
-    password = '',
-    database = 'wise2'
+    user = 'root', # Default
+    password = '', #Your password
+    database = '' #Add your Data Base name
 )
 
 
@@ -19,7 +19,7 @@ class Home:
         self.frame = Frame(self.root, width=1700, height= 950, bd= 4, relief= 'ridge', bg= 'black')
         self.frame.place(x = 0,y = 0)
 
-        image_path = "C:/Users/sathv/OneDrive/Desktop/Folders/Food Swift/plate.jpg"
+        image_path = "C:/Users/sathv/OneDrive/Desktop/Folders/project1/p.jpg" #Image path
         self.bg   = Image.open(image_path)
         self.bg = self.bg.resize((1700, 950))
         self.bg = ImageTk.PhotoImage(self.bg)
@@ -160,12 +160,18 @@ class Home:
         for name in self.data:
             self.msg = Label(self.msg_frame, text =  name[0] +'\t\t\t\t\t'+name[2]+'\t\t\t\t\t'+name[3]+'\t\t\t\t\t'+name[1]+'\t\t\t\t'+name[4]+'\t\t\t\t'+name[5].strftime("%Y-%m-%d %H:%M:%S"), bg = 'white', fg = 'blue', font=('Times New Roman', 10, 'bold'))
             self.msg.place(x = self.x1,y= self.y1)
-            self.y1 += 40         
+            self.y1 += 40
+            
+        self.btn = Button(self.msg_frame, text = 'Reset',font=('Courier New', 18, 'bold'), bg = 'white', command= self.reset, cursor = 'hand2')
+        self.btn.place(x=650,y=600)         
 
         self.bck_lbl = Label(self.msg_frame, text = 'Back To Main Page', bg = 'white', fg = 'steel blue', font=('Courier New', 14, 'bold'), cursor = 'hand2')
         self.bck_lbl.place(x = 0, y = 720)
         self.bck_lbl.bind("<Button - 1>", self.back_to_main2)
-   
+    def reset(self):
+        cursor.execute('truncate table student_detail;')
+        messagebox.showinfo('reset',f'Successfully reseted')
+
 
     def student(self):
 
@@ -173,7 +179,7 @@ class Home:
         self.msg_frame = Frame(self.root, width=1800, height= 950, bd= 4, relief= 'ridge', bg= 'pink')
         self.msg_frame.place(x = 0,y = 0)
 
-        image_path = "C:/Users/sathv/OneDrive/Desktop/Folders/Food Swift/plate.jpg"
+        image_path = "C:/Users/sathv/OneDrive/Desktop/project1/plate.jpg" #Add your Image path
         self.bg   = Image.open(image_path)
         self.bg = self.bg.resize((1700, 950))
         self.bg = ImageTk.PhotoImage(self.bg)
